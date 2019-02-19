@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  web:
+  api:
     image: webdevops/php-nginx:alpine-php7
     working_dir: /app
     depends_on:
