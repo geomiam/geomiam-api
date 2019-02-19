@@ -1,12 +1,23 @@
-version: "3.5"
+version: "3.3"
 
 services:
-
-  app:
-    image: golang:1.11-alpine
+  web:
+    image: webdevops/php-nginx:alpine-php7
+    working_dir: /app
+    depends_on:
+      - database
     volumes:
-      - .:/go/src/app
-    working_dir: /go/src/app
-    command: go run main.go
-    ports:
-      - "80:80"
+      - .:/app
+    environment:
+      WEB_DOCUMENT_ROOT: /app/public
+      WEB_DOCUMENT_INDEX: index.php
+      PHP_DATE_TIMEZONE: "Europe/Paris"
+      PHP_DISPLAY_ERRORS: 1
+
+  database:
+    image: mysql:5.7
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: geomiam
+      MYSQL_ROOT_PASSWORD: root
