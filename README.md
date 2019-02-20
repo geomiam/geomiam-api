@@ -25,3 +25,7 @@ cp .env.dist .env
 docker-compose up -d
 docker-compose exec --user=application api composer install
 ```
+
+```bash
+docker-compose exec --user=application api php bin/console hautelook:fixtures:load --purge-with-truncate
+```
