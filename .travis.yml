@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - '7.2'
+  - '7.3'
+  - nightly
+
+matrix:
+  allow_failures:
+    - php: nightly
+
+script: php bin/console security:check
