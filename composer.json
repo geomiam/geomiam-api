@@ -15,6 +15,7 @@
         "symfony/dotenv": "4.2.*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "4.2.*",
+        "symfony/monolog-bundle": "^3.3",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "4.2.*",
         "symfony/serializer-pack": "^1.0",
@@ -56,6 +57,10 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "compile": [
+            "php bin/console doctrine:database:create --if-not-exists",
+            "php bin/console doctrine:schema:update --force"
         ]
     },
     "conflict": {
